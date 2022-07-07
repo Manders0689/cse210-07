@@ -1,0 +1,5 @@
+#list of items and their points
+#link image
+#set message with each item
+
+{ item1: image, point, message, has key t/f}
