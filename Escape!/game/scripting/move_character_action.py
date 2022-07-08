@@ -1,5 +1,5 @@
 ##FINISH##
-#get y location and movements
+#get y location and movements?
 #Clean up
 
 from constants import *
@@ -18,13 +18,13 @@ class MoveCharacterAction(Action):
         velocity = body.get_velocity()
         position = body.get_position()
         x = position.get_x()
-        y = position.get_y()
+        #y = position.get_y()
         
         position = position.add(velocity)
 
         if x < 0:
             position = Point(0, position.get_y())
-        elif x > (SCREEN_WIDTH - RACKET_WIDTH):
-            position = Point(SCREEN_WIDTH - RACKET_WIDTH, position.get_y())
+        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH):
+            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, position.get_y())
             
         body.set_position(position)

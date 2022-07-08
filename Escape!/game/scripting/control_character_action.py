@@ -1,4 +1,4 @@
-##FINISH##
+##FINISH## - Katie
 #add constants
 
 from constants import *
