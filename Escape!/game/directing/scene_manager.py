@@ -1,33 +1,32 @@
-###CLEAN UP AND FINISH### - 
+###CLEAN UP AND FINISH### - Katie
 ###Make changes to fix game###
+
 import csv
 from constants import *
 from game.casting.animation import Animation
-from game.casting.ball import Ball
 from game.casting.body import Body
-from game.casting.brick import Brick
+from game.casting.item_in_room import Item
+from game.casting.door import Door
 from game.casting.image import Image
 from game.casting.label import Label
 from game.casting.point import Point
-from game.casting.racket import Racket
+from game.casting.character import Character
 from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
 from game.scripting.collide_borders_action import CollideBordersAction
-from game.scripting.collide_brick_action import CollideBrickAction
-from game.scripting.collide_racket_action import CollideRacketAction
-from game.scripting.control_racket_action import ControlRacketAction
-from game.scripting.draw_ball_action import DrawBallAction
-from game.scripting.draw_bricks_action import DrawBricksAction
+from game.scripting.collide_item_action import CollideItemAction
+from game.scripting.collide_character_action import CollideCharacterAction
+from game.scripting.control_character_action import ControlCharacterAction
+from game.scripting.draw_items_action import DrawItemsAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
-from game.scripting.draw_racket_action import DrawRacketAction
+from game.scripting.draw_character_action import DrawCharacterAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
-from game.scripting.move_ball_action import MoveBallAction
-from game.scripting.move_racket_action import MoveRacketAction
+from game.scripting.move_character_action import MoveCharacterAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
@@ -49,19 +48,18 @@ class SceneManager:
 
     CHECK_OVER_ACTION = CheckOverAction()
     COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
-    DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
-    DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
+    COLLIDE_ITEM_ACTION = CollideItemAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    COLLIDE_CHARACTER_ACTION = CollideCharacterAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    CONTROL_CHARACTER_ACTION = ControlCharacterAction(KEYBOARD_SERVICE)
+    DRAW_ITEMS_ACTION = DrawItemsAction(VIDEO_SERVICE)
+    # do we need a draw door action? or is that a part of Items
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
-    DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
+    DRAW_CHARACTER_ACTION= DrawCharacterAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
-    MOVE_BALL_ACTION = MoveBallAction()
-    MOVE_RACKET_ACTION = MoveRacketAction()
+    MOVE_CHARACTER_ACTION = MoveCharacterAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -88,9 +86,6 @@ class SceneManager:
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
         self._add_level(cast)
-        #self._add_lives(cast)
-        #self._add_score(cast)
-        #self._add_ball(cast)
         self._add_door(cast)
         self._add_items(cast)
         self._add_character(cast)
@@ -105,7 +100,6 @@ class SceneManager:
         self._add_release_script(script)
         
     def _prepare_next_level(self, cast, script):
-        #self._add_ball(cast)
         self._add_items(cast)
         self._add_character(cast)
         self._add_door(cast)
@@ -117,8 +111,10 @@ class SceneManager:
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
-        #self._add_ball(cast)
-        self._add_racket(cast)
+        # do we need to add items and door?
+        # self._add_items(cast)
+        # self._add_door(cast)
+        self._add_character(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -127,17 +123,16 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        self._activate_ball(cast)
         cast.clear_actors(DIALOG_GROUP)
 
         script.clear_actions(INPUT)
-        script.add_action(INPUT, self.CONTROL_RACKET_ACTION)
+        script.add_action(INPUT, self.CONTROL_CHARACTER_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
-        self._add_ball(cast)
-        self._add_racket(cast)
+        # do we add anything to the screen? 
+        self._add_character(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -148,25 +143,9 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     # casting methods
     # ----------------------------------------------------------------------------------------------
-    
-    def _activate_ball(self, cast):
-        ball = cast.get_first_actor(BALL_GROUP)
-        ball.release()
 
-    def _add_ball(self, cast):
-        cast.clear_actors(BALL_GROUP)
-        x = CENTER_X - BALL_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT  
-        position = Point(x, y)
-        size = Point(BALL_WIDTH, BALL_HEIGHT)
-        velocity = Point(0, 0)
-        body = Body(position, size, velocity)
-        image = Image(BALL_IMAGE)
-        ball = Ball(body, image, True)
-        cast.add_actor(BALL_GROUP, ball)
-
-    def _add_bricks(self, cast):
-        cast.clear_actors(BRICK_GROUP)
+    def _add_items(self, cast):
+        cast.clear_actors(ITEM_GROUP)
         
         stats = cast.get_first_actor(STATS_GROUP)
         level = stats.get_level() % BASE_LEVELS
@@ -177,7 +156,7 @@ class SceneManager:
 
             for r, row in enumerate(reader):
                 for c, column in enumerate(row):
-
+                    # change to read info in file
                     x = FIELD_LEFT + c * BRICK_WIDTH
                     y = FIELD_TOP + r * BRICK_HEIGHT
                     color = column[0]
@@ -195,8 +174,8 @@ class SceneManager:
                     body = Body(position, size, velocity)
                     animation = Animation(images, BRICK_RATE, BRICK_DELAY)
 
-                    brick = Brick(body, animation, points)
-                    cast.add_actor(BRICK_GROUP, brick)
+                    item = Item(body, animation, points)
+                    cast.add_actor(ITEM_GROUP, item)
 
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
@@ -212,36 +191,26 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(LEVEL_GROUP, label)
 
-    def _add_lives(self, cast):
-        cast.clear_actors(LIVES_GROUP)
-        text = Text(LIVES_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
-        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
-        label = Label(text, position)
-        cast.add_actor(LIVES_GROUP, label)
-
-    def _add_score(self, cast):
-        cast.clear_actors(SCORE_GROUP)
-        text = Text(SCORE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-        position = Point(CENTER_X, HUD_MARGIN)
-        label = Label(text, position)
-        cast.add_actor(SCORE_GROUP, label)
-
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    def _add_racket(self, cast):
-        cast.clear_actors(RACKET_GROUP)
-        x = CENTER_X - RACKET_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT
+    def _add_character(self, cast):
+        cast.clear_actors(CHARACTER_GROUP)
+        x = CENTER_X - CHARACTER_WIDTH / 2
+        y = SCREEN_HEIGHT - CHARACTER_HEIGHT
         position = Point(x, y)
-        size = Point(RACKET_WIDTH, RACKET_HEIGHT)
+        size = Point(CHARACTER_WIDTH, CHARACTER_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(RACKET_IMAGES, RACKET_RATE)
-        racket = Racket(body, animation)
-        cast.add_actor(RACKET_GROUP, racket)
+        animation = Animation(CHARACTER_IMAGES, CHARACTER_RATE)
+        character = Character(body, animation)
+        cast.add_actor(CHARACTER_GROUP, character)
+
+    def _add_door(self, cast):
+        # need to code this function to add the door or is this done in add_items?
+        pass
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods
@@ -258,9 +227,8 @@ class SceneManager:
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
-        script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
-        script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
-        script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
+        script.add_action(OUTPUT, self.DRAW_ITEMS_ACTION)
+        script.add_action(OUTPUT, self.DRAW_CHARACTER_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
@@ -274,10 +242,9 @@ class SceneManager:
         
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
-        script.add_action(UPDATE, self.MOVE_BALL_ACTION)
-        script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
+        script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
-        script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_ITEM_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_CHARACTER_ACTION)
+        script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)

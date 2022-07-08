@@ -5,7 +5,7 @@ from game.casting.color import Color
 # -------------------------------------------------------------------------------------------------- 
 
 # GAME
-GAME_NAME = "Batter"
+GAME_NAME = "Escape!"
 FRAME_RATE = 60
 
 # SCREEN
@@ -55,7 +55,7 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS
-LEVEL_FILE = "batter/assets/data/level-{:03}.txt"
+LEVEL_FILE = "Escape!/assets/data/level-{:03}.txt"
 BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
@@ -104,8 +104,8 @@ CHARACTER_HEIGHT = 28
 CHARACTER_RATE = 6
 CHARACTER_VELOCITY = 7
 
-# BRICK
-BRICK_GROUP = "bricks"
+# ITEM
+ITEM_GROUP = "items"
 BRICK_IMAGES = {
     "b": [f"batter/assets/images/{i:03}.png" for i in range(10,19)],
     "g": [f"batter/assets/images/{i:03}.png" for i in range(20,29)],

@@ -7,7 +7,7 @@ from game.casting.point import Point
 from game.scripting.action import Action
 
 
-class MoveRacketAction(Action):
+class MoveCharacterAction(Action):
 
     def __init__(self):
         pass
