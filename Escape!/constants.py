@@ -1,3 +1,5 @@
+##FINISH## - We'll all clean this up as we go, then look over everything when we meet Wednesday at 6pm.
+
 from game.casting.color import Color
 
 # -------------------------------------------------------------------------------------------------- 

@@ -1,4 +1,4 @@
-###CLEAN UP AND FINISH### - 
+###CLEAN UP AND FINISH### - Katie
 ###Make changes to fix game###
 import csv
 from constants import *

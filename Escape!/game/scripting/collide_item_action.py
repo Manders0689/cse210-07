@@ -1,4 +1,4 @@
-##FINISH## - 
+##FINISH## - Mandy
 
 from constants import *
 from game.casting.sound import Sound

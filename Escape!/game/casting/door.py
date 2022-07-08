@@ -5,7 +5,7 @@ from game.casting.point import Point
 class Door(Actor):
     pass
 
-#FINISH!! - 
+#FINISH!! - Diana
 
 #check to see if key if found
 #Save whether key is found or not key_is_found()
