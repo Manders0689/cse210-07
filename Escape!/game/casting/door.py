@@ -4,15 +4,6 @@ from game.casting.point import Point
 
 class Door(Actor):
 
-#FINISH!! - Diana
-
-#check to see if key if found
-#Save whether key is found or not key_is_found()
-
-#when character collides with door, then: 
-# check if key_is_found is true. If yes, open door, go to next level
-#   if key_is_found is false, message saying "You must have the key before you can open the door"
-
     def __init__(self, body, message, key, debug = False):
         """Constructs a new door Character.
         
@@ -23,6 +14,9 @@ class Door(Actor):
         """
         super().__init__(debug)
         self._body = body
+        self._message = message
+        message = "You need a key to open the door"
+        self._key = False
         
     def get_message(self):
         """Gets the item's message.
@@ -32,6 +26,14 @@ class Door(Actor):
         """
         return self._message
 
+    def get_body(self):
+        """Gets the item's body.
+    
+    Returns:
+        An instance of Body.
+    """
+        return self._body
+        
     def get_key(self):
 
         return self.get_key

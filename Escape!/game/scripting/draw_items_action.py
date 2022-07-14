@@ -1,6 +1,3 @@
-##FINISH## - Mandy
-#Add constant
-
 from constants import *
 from game.scripting.action import Action
 
@@ -15,7 +12,6 @@ class DrawItemsAction(Action):
         
         for item in items:
             body = item.get_body()
-            #may need to pull location from .txt file
 
             if item.is_debug():
                 rectangle = body.get_rectangle()

@@ -17,16 +17,7 @@ class Item(Actor):
         """
         super().__init__(debug)
         self._body = body
-        self._animation = animation
         self._message = message
-        
-    def get_animation(self):
-        """Gets the item's image.
-        
-        Returns:
-            An instance of Image.
-        """
-        return self._animation
 
     def get_body(self):
         """Gets the item's body.

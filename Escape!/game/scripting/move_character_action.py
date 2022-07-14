@@ -1,6 +1,4 @@
-##FINISH##
-#get y location and movements?
-#Clean up
+#FIX to allow for movement in middle of screen
 
 from constants import *
 from game.casting.point import Point
@@ -18,13 +16,19 @@ class MoveCharacterAction(Action):
         velocity = body.get_velocity()
         position = body.get_position()
         x = position.get_x()
-        #y = position.get_y()
+        y = position.get_y()
         
         position = position.add(velocity)
 
-        if x < 0:
-            position = Point(0, position.get_y())
-        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH):
-            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, position.get_y())
-            
+        if x < 0 & y < 0:
+            position = Point(0, 0)
+        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) & y < 0:
+            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, 0)
+        elif x < 0 & y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
+            position = Point(0, SCREEN_HEIGHT - CHARACTER_HEIGHT)  
+        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) & y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
+            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, SCREEN_HEIGHT - CHARACTER_HEIGHT)
+                
         body.set_position(position)
+        
+        

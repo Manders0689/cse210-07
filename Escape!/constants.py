@@ -59,7 +59,7 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS  -- update file
-LEVEL_FILE = "batter/assets/data/level-{:03}.txt"
+LEVEL_FILE = "Escape!/assets/data/level-{:03}.txt"
 BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
@@ -81,10 +81,9 @@ RELEASE = 6
 
 # STATS
 STATS_GROUP = "stats"
-#DEFAULT_LIVES = 3
-#MAXIMUM_LIVES = 5
+MESSAGE_GROUP = "message"
 
-# HUD  --  add timer???
+# HUD 
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
 LEVEL_FORMAT = "LEVEL: {}"
@@ -92,31 +91,30 @@ TIMER_FORMAT = "TIME LEFT: {}"
 TIMER_GROUP = "timer"
 TIME_LIMIT = 6
 
-# BALL  --  delete??
-BALL_GROUP = "balls"
-BALL_IMAGE = "batter/assets/images/000.png"
-BALL_WIDTH = 28
-BALL_HEIGHT = 28
-BALL_VELOCITY = 6
+# DOOR
+DOOR_GROUP = "door"
+DOOR_IMAGE = [f"Escape!/assets/images/door.png"]
+DOOR_WIDTH = 80
+DOOR_HEIGHT = 80
 
-# CHARACTER  -- update file
+# CHARACTER  
 CHARACTER_GROUP = "characters"
-CHARACTER_IMAGES = [f"batter/assets/images/{n:03}.png" for n in range(100, 103)]
-CHARACTER_WIDTH = 106
-CHARACTER_HEIGHT = 28
+CHARACTER_IMAGES = [f"Escape!/assets/images/{n:01}.png" for n in range(1, 4)]
+CHARACTER_WIDTH = 50
+CHARACTER_HEIGHT = 80
 CHARACTER_RATE = 6
 CHARACTER_VELOCITY = 7
 
-# ITEM  --  update files
+# ITEM  
 ITEM_GROUP = "items"
 ITEM_IMAGES = {
-    "b": [f"batter/assets/images/{i:03}.png" for i in range(10,19)],
-    "g": [f"batter/assets/images/{i:03}.png" for i in range(20,29)],
-    "p": [f"batter/assets/images/{i:03}.png" for i in range(30,39)],
-    "y": [f"batter/assets/images/{i:03}.png" for i in range(40,49)]
+    "d": [f"Escape!/assets/images/dresser.png"],
+    "s": [f"Escape!/assets/images/sofa.png"],
+    "p": [f"Escape!/assets/images/plant_1.png"],
+    "c": [f"Escape!/assets/images/Sleeping_cat.png"]
 }
 ITEM_WIDTH = 80
-ITEM_HEIGHT = 28
+ITEM_HEIGHT = 80
 ITEM_DELAY = 0.5
 ITEM_RATE = 4
 ITEM_MESSAGE = ""
