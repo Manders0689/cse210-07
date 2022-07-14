@@ -27,8 +27,9 @@ class MoveCharacterAction(Action):
         elif x < 0 & y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
             position = Point(0, SCREEN_HEIGHT - CHARACTER_HEIGHT)  
         elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) & y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
-            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, SCREEN_HEIGHT - CHARACTER_HEIGHT)
-                
+            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, SCREEN_HEIGHT - CHARACTER_HEIGHT)   
+        else:
+            position = Point(position.get_x(), position.get_y())
+
         body.set_position(position)
-        
         
