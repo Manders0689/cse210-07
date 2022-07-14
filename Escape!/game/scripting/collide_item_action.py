@@ -26,6 +26,6 @@ class CollideItemAction(Action):
                 #sound = Sound(BOUNCE_SOUND)
                 #self._audio_service.play_sound(sound)
                 #points = brick.get_points()
-                stats.add_points(points)
+                #stats.add_points(points)
                 #cast.remove_actor(BRICK_GROUP, brick)
-                message....
+                stats.get_message(message) ##Is this in stats?
