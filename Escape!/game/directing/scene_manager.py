@@ -157,22 +157,22 @@ class SceneManager:
             for r, row in enumerate(reader):
                 for c, column in enumerate(row):
                     # change to read info in file
-                    x = FIELD_LEFT + c * BRICK_WIDTH
-                    y = FIELD_TOP + r * BRICK_HEIGHT
+                    x = FIELD_LEFT + c * ITEM_WIDTH
+                    y = FIELD_TOP + r * ITEM_HEIGHT
                     color = column[0]
                     frames = int(column[1])
-                    points = BRICK_POINTS 
+                    #points = ITEM_POINTS 
                     
                     if frames == 1:
                         points *= 2
                     
                     position = Point(x, y)
-                    size = Point(BRICK_WIDTH, BRICK_HEIGHT)
+                    size = Point(ITEM_WIDTH, ITEM_HEIGHT)
                     velocity = Point(0, 0)
-                    images = BRICK_IMAGES[color][0:frames]
+                    images = ITEM_IMAGES[color][0:frames]
 
                     body = Body(position, size, velocity)
-                    animation = Animation(images, BRICK_RATE, BRICK_DELAY)
+                    animation = Animation(images, ITEM_RATE, ITEM_DELAY)
 
                     item = Item(body, animation, points)
                     cast.add_actor(ITEM_GROUP, item)
