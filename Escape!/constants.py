@@ -87,11 +87,10 @@ STATS_GROUP = "stats"
 # HUD  --  add timer???
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
-#LIVES_GROUP = "lives"
-#SCORE_GROUP = "score"
 LEVEL_FORMAT = "LEVEL: {}"
-#LIVES_FORMAT = "LIVES: {}"
-#SCORE_FORMAT = "SCORE: {}"
+TIMER_FORMAT = "TIME LEFT: {}"
+TIMER_GROUP = "timer"
+TIME_LIMIT = 6
 
 # BALL  --  delete??
 BALL_GROUP = "balls"
