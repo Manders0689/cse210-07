@@ -15,7 +15,6 @@ from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
-from game.scripting.collide_borders_action import CollideBordersAction
 from game.scripting.collide_item_action import CollideItemAction
 from game.scripting.collide_character_action import CollideCharacterAction
 from game.scripting.control_character_action import ControlCharacterAction
@@ -46,13 +45,11 @@ class SceneManager:
     PHYSICS_SERVICE = RaylibPhysicsService()
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-    CHECK_OVER_ACTION = CheckOverAction()
-    COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    CHECK_OVER_ACTION = CheckOverAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_ITEM_ACTION = CollideItemAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_CHARACTER_ACTION = CollideCharacterAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_CHARACTER_ACTION = ControlCharacterAction(KEYBOARD_SERVICE)
     DRAW_ITEMS_ACTION = DrawItemsAction(VIDEO_SERVICE)
-    # do we need a draw door action? or is that a part of Items
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     DRAW_CHARACTER_ACTION= DrawCharacterAction(VIDEO_SERVICE)
@@ -111,9 +108,8 @@ class SceneManager:
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
-        # do we need to add items and door?
-        # self._add_items(cast)
-        # self._add_door(cast)
+        self._add_items(cast)
+        self._add_door(cast)
         self._add_character(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
@@ -129,9 +125,11 @@ class SceneManager:
         script.add_action(INPUT, self.CONTROL_CHARACTER_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
+        # check dialogue?
 
     def _prepare_game_over(self, cast, script):
-        # do we add anything to the screen? 
+        self._add_items(cast)
+        self._add_door(cast)
         self._add_character(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
@@ -159,22 +157,16 @@ class SceneManager:
                     # change to read info in file
                     x = FIELD_LEFT + c * ITEM_WIDTH
                     y = FIELD_TOP + r * ITEM_HEIGHT
-                    color = column[0]
-                    frames = int(column[1])
-                    #points = ITEM_POINTS 
-                    
-                    if frames == 1:
-                        points *= 2
                     
                     position = Point(x, y)
                     size = Point(ITEM_WIDTH, ITEM_HEIGHT)
                     velocity = Point(0, 0)
-                    images = ITEM_IMAGES[color][0:frames]
+                    images = ITEM_IMAGES
+                    message = "Message"
 
                     body = Body(position, size, velocity)
-                    animation = Animation(images, ITEM_RATE, ITEM_DELAY)
 
-                    item = Item(body, animation, points)
+                    item = Item(body, message)
                     cast.add_actor(ITEM_GROUP, item)
 
     def _add_dialog(self, cast, message):
@@ -209,8 +201,15 @@ class SceneManager:
         cast.add_actor(CHARACTER_GROUP, character)
 
     def _add_door(self, cast):
-        # need to code this function to add the door or is this done in add_items?
-        pass
+        cast.clear_actors(DOOR_GROUP)
+        x = DOOR_WIDTH
+        y = SCREEN_HEIGHT - DOOR_HEIGHT
+        position = Point(x, y)
+        size = Point(DOOR_WIDTH, DOOR_HEIGHT)
+        velocity = Point(0, 0)
+        body = Body(position, size, velocity)
+        door = Door(body)
+        cast.add_actor(DOOR_GROUP, door)
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods
@@ -243,7 +242,6 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_ITEM_ACTION)
         script.add_action(UPDATE, self.COLLIDE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)

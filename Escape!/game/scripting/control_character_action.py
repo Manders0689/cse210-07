@@ -1,6 +1,3 @@
-##FINISH## - Katie
-#add constants
-
 from constants import *
 from game.scripting.action import Action
 

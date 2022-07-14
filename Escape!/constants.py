@@ -23,14 +23,14 @@ FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
 
 # FONT  --  update font file?
-FONT_FILE = "batter/assets/fonts/zorque.otf"
+FONT_FILE = "Escape!/assets/fonts/zorque.otf"
 FONT_SMALL = 32
 FONT_LARGE = 48
 
 # SOUND  --  update sound files?
-BOUNCE_SOUND = "batter/assets/sounds/boing.wav"
-WELCOME_SOUND = "batter/assets/sounds/start.wav"
-OVER_SOUND = "batter/assets/sounds/over.wav"
+#BOUNCE_SOUND = "Escape!/assets/sounds/boing.wav"
+WELCOME_SOUND = "Escape!/assets/sounds/start.wav"
+OVER_SOUND = "Escape!/assets/sounds/over.wav"
 
 # TEXT
 ALIGN_CENTER = 0

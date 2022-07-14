@@ -4,7 +4,7 @@ from game.casting.point import Point
 
 class Door(Actor):
 
-    def __init__(self, body, message, key, debug = False):
+    def __init__(self, body, debug = False):
         """Constructs a new door Character.
         
         Args:Args:
@@ -14,8 +14,7 @@ class Door(Actor):
         """
         super().__init__(debug)
         self._body = body
-        self._message = message
-        message = "You need a key to open the door"
+        self._message = "You need a key to open the door"
         self._key = False
         
     def get_message(self):
@@ -36,4 +35,4 @@ class Door(Actor):
         
     def get_key(self):
 
-        return self.get_key
+        return self._key

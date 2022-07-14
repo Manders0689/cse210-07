@@ -6,7 +6,7 @@ from game.casting.actor import Actor
 class Item(Actor):
     """A solid object that can be interacted with."""
 
-    def __init__(self, body, animation, message, debug = False):
+    def __init__(self, body, message, debug = False):
         """Constructs a new Item.
         
         Args:
