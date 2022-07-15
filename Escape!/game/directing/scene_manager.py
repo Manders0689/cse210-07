@@ -199,8 +199,8 @@ class SceneManager:
 
     def _add_character(self, cast):
         cast.clear_actors(CHARACTER_GROUP)
-        x = CENTER_X - CHARACTER_WIDTH / 2
-        y = SCREEN_HEIGHT - CHARACTER_HEIGHT
+        x = CENTER_X - CHARACTER_WIDTH
+        y = CENTER_Y - CHARACTER_HEIGHT
         position = Point(x, y)
         size = Point(CHARACTER_WIDTH, CHARACTER_HEIGHT)
         velocity = Point(0, 0)
