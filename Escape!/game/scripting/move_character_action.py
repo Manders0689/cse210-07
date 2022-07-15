@@ -18,13 +18,13 @@ class MoveCharacterAction(Action):
         
         position = position.add(velocity)
 
-        if x < 0 & y < 0:
-            position = Point(0, 0)
-        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) & y < 0:
-            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, 0)
-        elif x < 0 & y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
+        if x < 0 and y < 60:
+            position = Point(0, 60)
+        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) and y < 60:
+            position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, 60)
+        elif x < 0 and y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
             position = Point(0, SCREEN_HEIGHT - CHARACTER_HEIGHT)  
-        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) & y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
+        elif x > (SCREEN_WIDTH - CHARACTER_WIDTH) and y > (SCREEN_HEIGHT - CHARACTER_HEIGHT):
             position = Point(SCREEN_WIDTH - CHARACTER_WIDTH, SCREEN_HEIGHT - CHARACTER_HEIGHT)   
         else:
             position = Point(position.get_x(), position.get_y())
