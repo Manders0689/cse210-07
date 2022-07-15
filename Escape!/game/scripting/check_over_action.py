@@ -18,3 +18,6 @@ class CheckOverAction(Action):
             stats = cast.get_first_actor(STATS_GROUP)
             stats.next_level()
             callback.on_next(NEXT_LEVEL)
+
+        if time.time() > END_TIME:
+            callback.on_next(GAME_OVER)

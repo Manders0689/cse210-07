@@ -82,7 +82,7 @@ class SceneManager:
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
         self._add_level(cast)
-        self._add_timer(cast)
+        # self._add_timer(cast)
         self._add_door(cast)
         self._add_items(cast)
         self._add_character(cast)
@@ -185,12 +185,12 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(LEVEL_GROUP, label)
 
-    def _add_timer(self, cast):
-        cast.clear_actors(TIMER_GROUP)
-        text = Text(TIMER_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-        position = Point(CENTER_X, HUD_MARGIN)
-        label = Label(text, position)
-        cast.add_actor(TIMER_GROUP, label)
+    # def _add_timer(self, cast):
+    #     cast.clear_actors(TIMER_GROUP)
+    #     text = Text(TIMER_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
+    #     position = Point(CENTER_X, HUD_MARGIN)
+    #     label = Label(text, position)
+    #     cast.add_actor(TIMER_GROUP, label)
 
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)

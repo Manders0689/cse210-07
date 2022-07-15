@@ -1,6 +1,7 @@
 ##FINISH## - We'll all clean this up as we go, then look over everything when we meet Wednesday
 
 from game.casting.color import Color
+import time
 
 # -------------------------------------------------------------------------------------------------- 
 # GENERAL GAME CONSTANTS
@@ -83,13 +84,18 @@ RELEASE = 6
 STATS_GROUP = "stats"
 MESSAGE_GROUP = "message"
 
+# TIMER
+START_TIME = time.time()
+TIME_LIMIT = 15
+END_TIME = START_TIME + TIME_LIMIT
+
 # HUD 
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
 LEVEL_FORMAT = "LEVEL: {}"
-TIMER_FORMAT = "TIME LEFT: {}"
-TIMER_GROUP = "timer"
-TIME_LIMIT = 6
+# TIMER_FORMAT = "TIME LEFT: {}"
+# TIMER_GROUP = "timer"
+# TIME_LIMIT = 6
 
 # DOOR
 DOOR_GROUP = "door"
