@@ -17,7 +17,7 @@ class DrawItemsAction(Action):
                 rectangle = body.get_rectangle()
                 self._video_service.draw_rectangle(rectangle, PURPLE)
                 
-            animation = item.get_animation()
-            image = animation.next_image()
+            #animation = item.get_animation()
+            image = item.get_image()
             position = body.get_position()
             self._video_service.draw_image(image, position)
