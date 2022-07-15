@@ -162,8 +162,8 @@ class SceneManager:
             x = value[0]
             y = value[1]
             message = value[2]
-            has_key = value[3]
-            image = value[4]
+            has_key = bool(value[3])
+            image = Image(value[4])
             position = Point(x, y)
             size = Point(ITEM_WIDTH, ITEM_HEIGHT)
             velocity = Point(0, 0)
