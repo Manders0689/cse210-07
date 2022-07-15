@@ -28,7 +28,6 @@ FONT_SMALL = 32
 FONT_LARGE = 48
 
 # SOUND  
-#BOUNCE_SOUND = "Escape!/assets/sounds/boing.wav"
 WELCOME_SOUND = "Escape!/assets/sounds/start.wav"
 OVER_SOUND = "Escape!/assets/sounds/over.wav"
 
@@ -58,7 +57,7 @@ NEXT_LEVEL = 2
 IN_PLAY = 3
 GAME_OVER = 4
 
-# LEVELS  -- update file
+# LEVELS 
 LEVEL_FILE = "Escape!/assets/data/level-{:03}.csv"
 BASE_LEVELS = 5
 
