@@ -1,8 +1,8 @@
-  , , , , , , , , , , 
-  , ,i4, , , , ,i3, , ,  
-  , , , , , , , , , ,  
-  , , ,i1 , , , , , , ,  
-  , , , , , , , , , ,  
-  , , , , , , , ,i2 , ,  
-  , , , , , , , , , , 
-  , , , , , , , , , , 
+Item, position_x, position_y, message, has_key, path
+dresser, 200, 600, Someone needs to do their laundry!, False, Escape!/assets/images/dresser.png
+plant, 800, 100, Just a pile of dead leaves here..., False, Escape!/assets/images/plant.png
+sofa, 1000, 550, Only spare change here!, False, Escape!/assets/images/sofa.png
+cat, 450, 320, You found the key!, True, Escape!/assets/images/cat.png
+dog, 650, 300, Look at those puppy dog eyes!, False, Escape!/assets/images/dog.png
+computer, 150, 50, Someone's playing Minecraft!, False, Escape!/assets/images/computer.png
+bookshelf, 600, 650, How to escape - For Dummies!, False, Escape!/assets/images/bookshelf.png
