@@ -22,12 +22,12 @@ FIELD_BOTTOM = SCREEN_HEIGHT
 FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
 
-# FONT  --  update font file?
+# FONT  
 FONT_FILE = "Escape!/assets/fonts/zorque.otf"
 FONT_SMALL = 32
 FONT_LARGE = 48
 
-# SOUND  --  update sound files?
+# SOUND  
 #BOUNCE_SOUND = "Escape!/assets/sounds/boing.wav"
 WELCOME_SOUND = "Escape!/assets/sounds/start.wav"
 OVER_SOUND = "Escape!/assets/sounds/over.wav"
@@ -122,5 +122,5 @@ ITEM_MESSAGE = ""
 # DIALOG
 DIALOG_GROUP = "dialogs"
 ENTER_TO_START = "PRESS ENTER TO START"
-PREP_TO_LAUNCH = "PREPARING TO LAUNCH"
+PREP_TO_LAUNCH = "PREPARING TO LAUNCH"   #Don't need?
 WAS_GOOD_GAME = "GAME OVER"

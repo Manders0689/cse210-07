@@ -24,11 +24,11 @@ class Stats(Actor):
         return self._level
   
     def get_timer(self):
-#         """Gets the time.
+        """Gets the time.
 
-#         Returns:
-#             A number representing the time.
-#         """
+        Returns:
+            A number representing the time.
+        """
         return self._timer
     
     def next_level(self):
