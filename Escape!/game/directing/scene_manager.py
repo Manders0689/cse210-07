@@ -150,25 +150,27 @@ class SceneManager:
         filename = LEVEL_FILE.format(level)
 
         with open(filename, 'r') as file:
-            reader = csv.reader(file, skipinitialspace=True)
-
-            for r, row in enumerate(reader):
-                for c, column in enumerate(row):
-                    # change to read info in file
-                    x = FIELD_LEFT + c * ITEM_WIDTH
-                    y = FIELD_TOP + r * ITEM_HEIGHT
-                    
-                    position = Point(x, y)
-                    size = Point(ITEM_WIDTH, ITEM_HEIGHT)
-                    velocity = Point(0, 0)
-                    images = ITEM_IMAGES
-                    message = "Message"
-
-                    body = Body(position, size, velocity)
-
-                    item = Item(body, message)
-                    cast.add_actor(ITEM_GROUP, item)
-
+            reader = csv.reader(file, skipinitialspace=True, delimiter=",")
+            # skip header line
+            next(reader)
+            #create dictionary
+            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], n[4], n[5]] for n in reader}         
+            
+        for item in main_dict.items():
+            key = item[0]
+            value = item[1]
+            x = value[0]
+            y = value[1]
+            message = value[2]
+            has_key = value[3]
+            image = value[4]
+            position = Point(x, y)
+            size = Point(ITEM_WIDTH, ITEM_HEIGHT)
+            velocity = Point(0, 0)
+            body = Body(position, size, velocity)
+            item = Item(body, message, image, has_key)
+            cast.add_actor(ITEM_GROUP, item)
+        
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
@@ -209,7 +211,7 @@ class SceneManager:
 
     def _add_door(self, cast):
         cast.clear_actors(DOOR_GROUP)
-        x = DOOR_WIDTH
+        x = CENTER_X - (DOOR_WIDTH / 2)
         y = SCREEN_HEIGHT - DOOR_HEIGHT
         position = Point(x, y)
         size = Point(DOOR_WIDTH, DOOR_HEIGHT)
