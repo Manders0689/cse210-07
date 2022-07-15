@@ -149,18 +149,20 @@ class SceneManager:
         filename = LEVEL_FILE.format(level)
 
         with open(filename, 'r') as file:
-            reader = csv.reader(file, skipinitialspace=True)
+            reader = csv.reader(file, skipinitialspace=True, delimiter=",")
             # skip header line
             next(reader)
             #create dictionary
-            main_dict = {rows[0]: [rows[1], rows[2], rows[3], rows[4]] for rows in reader}         
+            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], n[4], n[5]] for n in reader}         
             
-        for item in main_dict:
-            x = item[1]
-            y = item[2]
-            message = item[3]
-            has_key = item[4]
-            image = item[5]
+        for item in main_dict.items():
+            key = item[0]
+            value = item[1]
+            x = value[0]
+            y = value[1]
+            message = value[2]
+            has_key = value[3]
+            image = value[4]
             position = Point(x, y)
             size = Point(ITEM_WIDTH, ITEM_HEIGHT)
             velocity = Point(0, 0)
