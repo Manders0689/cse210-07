@@ -201,7 +201,7 @@ class SceneManager:
 
     def _add_door(self, cast):
         cast.clear_actors(DOOR_GROUP)
-        x = DOOR_WIDTH
+        x = CENTER_X - (DOOR_WIDTH / 2)
         y = SCREEN_HEIGHT - DOOR_HEIGHT
         position = Point(x, y)
         size = Point(DOOR_WIDTH, DOOR_HEIGHT)
