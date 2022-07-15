@@ -150,24 +150,24 @@ class SceneManager:
 
         with open(filename, 'r') as file:
             reader = csv.reader(file, skipinitialspace=True)
-
-            for r, row in enumerate(reader):
-                for c, column in enumerate(row):
-                    # change to read info in file
-                    x = FIELD_LEFT + c * ITEM_WIDTH
-                    y = FIELD_TOP + r * ITEM_HEIGHT
-                    
-                    position = Point(x, y)
-                    size = Point(ITEM_WIDTH, ITEM_HEIGHT)
-                    velocity = Point(0, 0)
-                    images = ITEM_IMAGES
-                    message = "Message"
-
-                    body = Body(position, size, velocity)
-
-                    item = Item(body, message)
-                    cast.add_actor(ITEM_GROUP, item)
-
+            # skip header line
+            next(reader)
+            #create dictionary
+            main_dict = {rows[0]: [rows[1], rows[2], rows[3], rows[4]] for rows in reader}         
+            
+        for item in main_dict:
+            x = item[1]
+            y = item[2]
+            message = item[3]
+            has_key = item[4]
+            image = item[5]
+            position = Point(x, y)
+            size = Point(ITEM_WIDTH, ITEM_HEIGHT)
+            velocity = Point(0, 0)
+            body = Body(position, size, velocity)
+            item = Item(body, message, image, has_key)
+            cast.add_actor(ITEM_GROUP, item)
+        
     def _add_dialog(self, cast, message):
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)

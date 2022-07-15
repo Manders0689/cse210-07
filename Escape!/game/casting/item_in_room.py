@@ -6,7 +6,7 @@ from game.casting.actor import Actor
 class Item(Actor):
     """A solid object that can be interacted with."""
 
-    def __init__(self, body, message, debug = False):
+    def __init__(self, body, message, image, has_key, debug = False):
         """Constructs a new Item.
         
         Args:
@@ -18,6 +18,8 @@ class Item(Actor):
         super().__init__(debug)
         self._body = body
         self._message = message
+        self._image = image
+        self._has_key = has_key
 
     def get_body(self):
         """Gets the item's body.
@@ -34,4 +36,8 @@ class Item(Actor):
             Text representing the item's message.
         """
         return self._message
+    
+    def get_image(self):
+        
+        return self._image
     

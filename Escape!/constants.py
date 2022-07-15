@@ -59,7 +59,7 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS  -- update file
-LEVEL_FILE = "Escape!/assets/data/level-{:03}.txt"
+LEVEL_FILE = "Escape!/assets/data/level-{:03}.csv"
 BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
@@ -105,14 +105,8 @@ CHARACTER_HEIGHT = 80
 CHARACTER_RATE = 6
 CHARACTER_VELOCITY = 7
 
-# ITEM  
+# ITEM -- deleted item images
 ITEM_GROUP = "items"
-ITEM_IMAGES = {
-    "d": [f"Escape!/assets/images/dresser.png"],
-    "s": [f"Escape!/assets/images/sofa.png"],
-    "p": [f"Escape!/assets/images/plant_1.png"],
-    "c": [f"Escape!/assets/images/Sleeping_cat.png"]
-}
 ITEM_WIDTH = 80
 ITEM_HEIGHT = 80
 ITEM_DELAY = 0.5
