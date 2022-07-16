@@ -154,7 +154,7 @@ class SceneManager:
             # skip header line
             next(reader)
             #create dictionary
-            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], n[4], n[5]] for n in reader}         
+            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], bool(n[4]), n[5]] for n in reader}       
             
         for item in main_dict.items():
             key = item[0]
@@ -162,7 +162,7 @@ class SceneManager:
             x = value[0]
             y = value[1]
             message = value[2]
-            has_key = bool(value[3])
+            has_key = value[3]
             image = Image(value[4])
             position = Point(x, y)
             size = Point(ITEM_WIDTH, ITEM_HEIGHT)
