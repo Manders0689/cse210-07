@@ -18,3 +18,4 @@ class CollideCharacterAction(Action):
 
         if door.get_key() == False & self._physics_service.has_collided(door_body, character_body): 
             door.get_message()
+            # needs to print to screen

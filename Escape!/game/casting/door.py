@@ -49,3 +49,11 @@ class Door(Actor):
             key: true or false if the key has been found
         """
         self._key = key
+
+    def get_image(self):
+        """Gets the door image.
+
+        Returns:
+            door image path.
+        """
+        return self._image
