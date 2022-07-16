@@ -14,7 +14,7 @@ class CheckOverAction(Action):
         door_body = door.get_body()
         character_body = character.get_body()
         
-        if door.get_key() == True & self._physics_service.has_collided(door_body, character_body): 
+        if door.get_key() == True and self._physics_service.has_collided(door_body, character_body): 
             stats = cast.get_first_actor(STATS_GROUP)
             stats.next_level()
             callback.on_next(NEXT_LEVEL)
