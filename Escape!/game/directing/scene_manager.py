@@ -22,6 +22,7 @@ from game.scripting.draw_items_action import DrawItemsAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
 from game.scripting.draw_character_action import DrawCharacterAction
+from game.scripting.draw_door_action import DrawDoorAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
@@ -50,6 +51,7 @@ class SceneManager:
     CONTROL_CHARACTER_ACTION = ControlCharacterAction(KEYBOARD_SERVICE)
     DRAW_ITEMS_ACTION = DrawItemsAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
+    DRAW_DOOR_ACTION = DrawDoorAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     DRAW_CHARACTER_ACTION= DrawCharacterAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
@@ -221,6 +223,7 @@ class SceneManager:
         door = Door(body, image)
         cast.add_actor(DOOR_GROUP, door)
 
+
     # ----------------------------------------------------------------------------------------------
     # scripting methods
     # ----------------------------------------------------------------------------------------------
@@ -236,6 +239,7 @@ class SceneManager:
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
+        script.add_action(OUTPUT, self.DRAW_DOOR_ACTION)
         script.add_action(OUTPUT, self.DRAW_ITEMS_ACTION)
         script.add_action(OUTPUT, self.DRAW_CHARACTER_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
