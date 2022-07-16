@@ -1,6 +1,3 @@
-###CLEAN UP AND FINISH### - Katie
-###Make changes to fix game###
-
 import csv
 from constants import *
 from game.casting.animation import Animation
