@@ -38,6 +38,17 @@ class Item(Actor):
         return self._message
     
     def get_image(self):
+        """Gets the item's image.
         
+        Returns:
+            string representing the item's image path.
+        """
         return self._image
     
+    def get_key(self):
+        """Gets boolean if the item has the key.
+        
+        Returns:
+            Boolean representing if the item has the key.
+        """
+        return self._has_key

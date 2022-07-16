@@ -4,10 +4,10 @@ from game.casting.point import Point
 
 class Door(Actor):
 
-    def __init__(self, body, debug = False):
+    def __init__(self, body, image, debug = False):
         """Constructs a new door Character.
         
-        Args:Args:
+        Args:
             body: A new instance of Body.
             animation: A new instance of Animation.
             debug: If it is being debugged. 
@@ -16,6 +16,7 @@ class Door(Actor):
         self._body = body
         self._message = "You need a key to open the door"
         self._key = False
+        self._image = image
         
     def get_message(self):
         """Gets the item's message.
@@ -34,5 +35,17 @@ class Door(Actor):
         return self._body
         
     def get_key(self):
+        """Gets if the item has the key or not.
 
+        Returns:
+            Boolean representing if an item has the key.
+        """
         return self._key
+
+    def set_key(self, key):
+        """Sets if the item has the key or not.
+
+        Args: 
+            key: true or false if the key has been found
+        """
+        self._key = key

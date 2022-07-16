@@ -97,9 +97,9 @@ class SceneManager:
         self._add_release_script(script)
         
     def _prepare_next_level(self, cast, script):
+        self._add_door(cast)
         self._add_items(cast)
         self._add_character(cast)
-        self._add_door(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -108,8 +108,8 @@ class SceneManager:
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
-        self._add_items(cast)
         self._add_door(cast)
+        self._add_items(cast)
         self._add_character(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
@@ -211,13 +211,14 @@ class SceneManager:
 
     def _add_door(self, cast):
         cast.clear_actors(DOOR_GROUP)
-        x = CENTER_X - (DOOR_WIDTH / 2)
-        y = SCREEN_HEIGHT - DOOR_HEIGHT
+        x = CENTER_X - DOOR_WIDTH
+        y = FIELD_TOP
         position = Point(x, y)
         size = Point(DOOR_WIDTH, DOOR_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        door = Door(body)
+        image = Image(DOOR_IMAGE)
+        door = Door(body, image)
         cast.add_actor(DOOR_GROUP, door)
 
     # ----------------------------------------------------------------------------------------------

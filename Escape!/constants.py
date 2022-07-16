@@ -98,8 +98,8 @@ LEVEL_FORMAT = "LEVEL: {}"
 
 # DOOR
 DOOR_GROUP = "door"
-DOOR_IMAGE = [f"Escape!/assets/images/door.png"]
-DOOR_WIDTH = 80
+DOOR_IMAGE = "Escape!/assets/images/door.png"
+DOOR_WIDTH = 50
 DOOR_HEIGHT = 80
 
 # CHARACTER  
