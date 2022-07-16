@@ -35,6 +35,7 @@ from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 from game.services.raylib.raylib_video_service import RaylibVideoService
 
 
+
 class SceneManager:
     """The person in charge of setting up the cast and script for each scene."""
     
@@ -153,16 +154,16 @@ class SceneManager:
             # skip header line
             next(reader)
             #create dictionary
-            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], bool(n[4]), n[5]] for n in reader}       
+            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], bool(n[4]), n[5]] for n in reader}    
             
-        for item in main_dict.items():
-            key = item[0]
-            value = item[1]
-            x = value[0]
-            y = value[1]
-            message = value[2]
-            has_key = value[3]
-            image = Image(value[4])
+        for key, values in main_dict.items():
+            #key = item[0]
+            #values = item[1]
+            x = values[0]
+            y = values[1]
+            message = values[2]
+            has_key = values[3]
+            image = Image(values[4])
             position = Point(x, y)
             size = Point(ITEM_WIDTH, ITEM_HEIGHT)
             velocity = Point(0, 0)
