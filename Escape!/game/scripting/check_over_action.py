@@ -19,5 +19,7 @@ class CheckOverAction(Action):
             stats.next_level()
             callback.on_next(NEXT_LEVEL)
 
-        if time.time() > END_TIME:
-            callback.on_next(GAME_OVER)
+
+        #### HARDCODED TIMER
+        # if time.time() > END_TIME:
+        #     callback.on_next(GAME_OVER)

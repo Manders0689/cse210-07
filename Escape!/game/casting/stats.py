@@ -1,11 +1,7 @@
-###CLEAN UP AND FINISH## - Alexa
-#level
-#time
-
+import time
 from constants import *
 from game.casting.actor import Actor
-# import time
-# import datetime
+
 
 class Stats(Actor):
     """The game stat including level and 
@@ -15,25 +11,22 @@ class Stats(Actor):
         """Constructs a new Stats."""
         super().__init__(debug)
         self._level = 1
-        # self._timer = TIME_LIMIT
+        self._start_time = time.time()
+        self._end_time = self._start_time + TIME_LIMIT + 1
+        self._time_remaining = TIME_LIMIT + 1
 
-    # def set_timer(self, total_seconds):
-    #     while self._timer > 0:
+    def set_timer(self):
+        """Sets timer to start running. 
+        Tracks how much time is remaining."""
+
+        self._time_remaining = int(self._end_time - time.time())
+
+    def get_timer(self):
+        "Gets the time remaining"
         
-    #         # Timer represents time left on countdown
-    #         timer = datetime.timedelta(seconds = total_seconds)
-                
-    #         # Prints the time left on the timer
-    #         # self.set_text(f"Timer: {timer}")
-    #         # print(timer, end="\r")
-        
-    #         # Delays the program one second
-    #         time.sleep(1)
-        
-    #         # Counts timer down by 1 second
-    #         total_seconds -= 1
-        
-    #     return timer
+        self.set_timer()
+
+        return self._time_remaining
         
     def get_level(self):
         """Gets the level.
@@ -42,14 +35,7 @@ class Stats(Actor):
             A number representing the level.
         """
         return self._level
-  
-    # def get_timer(self):
-    #     """Gets the time.
 
-    #     Returns:
-    #         A number representing the number of seconds left.
-    #     """
-    #     return self._timer
     
     def next_level(self):
         """Adds one level."""
@@ -58,5 +44,7 @@ class Stats(Actor):
     def reset(self):
         """Resets the stats back to their default values."""
         self._level = 1
-        # self._timer = TIME_LIMIT
+        self._start_time = time.time()
+        self._end_time = self._start_time + TIME_LIMIT + 1
+        self._time_remaining = TIME_LIMIT + 1
         

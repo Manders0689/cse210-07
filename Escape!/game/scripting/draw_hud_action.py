@@ -1,6 +1,3 @@
-##FINISH## - Alexa
-#Add constants
-
 from constants import *
 from game.scripting.action import Action
 
@@ -13,8 +10,8 @@ class DrawHudAction(Action):
     def execute(self, cast, script, callback):
         stats = cast.get_first_actor(STATS_GROUP)
         self._draw_label(cast, LEVEL_GROUP, LEVEL_FORMAT, stats.get_level())
-        # self._draw_label(cast, TIMER_GROUP, TIMER_FORMAT, stats.get_timer())
-
+        self._draw_label(cast, TIMER_GROUP, TIMER_FORMAT, stats.get_timer())
+        
     def _draw_label(self, cast, group, format_str, data):
         label = cast.get_first_actor(group)
         text = label.get_text()

@@ -26,6 +26,7 @@ from game.scripting.load_assets_action import LoadAssetsAction
 from game.scripting.move_character_action import MoveCharacterAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
+from game.scripting.run_timer import RunTimer
 from game.scripting.start_drawing_action import StartDrawingAction
 from game.scripting.timed_change_scene_action import TimedChangeSceneAction
 from game.scripting.unload_assets_action import UnloadAssetsAction
@@ -57,6 +58,7 @@ class SceneManager:
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_CHARACTER_ACTION = MoveCharacterAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
+    RUN_TIMER = RunTimer()
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
 
@@ -82,7 +84,7 @@ class SceneManager:
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
         self._add_level(cast)
-        # self._add_timer(cast)
+        self._add_timer(cast)
         self._add_door(cast)
         self._add_items(cast)
         self._add_character(cast)
@@ -185,12 +187,12 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(LEVEL_GROUP, label)
 
-    # def _add_timer(self, cast):
-    #     cast.clear_actors(TIMER_GROUP)
-    #     text = Text(TIMER_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-    #     position = Point(CENTER_X, HUD_MARGIN)
-    #     label = Label(text, position)
-    #     cast.add_actor(TIMER_GROUP, label)
+    def _add_timer(self, cast):
+        cast.clear_actors(TIMER_GROUP)
+        text = Text(TIMER_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
+        position = Point(CENTER_X, HUD_MARGIN)
+        label = Label(text, position)
+        cast.add_actor(TIMER_GROUP, label)
 
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)
@@ -253,6 +255,7 @@ class SceneManager:
         
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
+        script.add_action(UPDATE, self.RUN_TIMER)
         script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.COLLIDE_ITEM_ACTION)
         script.add_action(UPDATE, self.COLLIDE_CHARACTER_ACTION)

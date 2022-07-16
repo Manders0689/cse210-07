@@ -82,19 +82,19 @@ RELEASE = 6
 # STATS
 STATS_GROUP = "stats"
 MESSAGE_GROUP = "message"
+TIME_LIMIT = 60
 
-# TIMER
-START_TIME = time.time()
-TIME_LIMIT = 15
-END_TIME = START_TIME + TIME_LIMIT
+# # # # # HARDCODED TIMER
+# # # # START_TIME = time.time()
+# # # # TIME_LIMIT = 15
+# # # # END_TIME = START_TIME + TIME_LIMIT
 
 # HUD 
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
+TIMER_GROUP = "timer"
 LEVEL_FORMAT = "LEVEL: {}"
-# TIMER_FORMAT = "TIME LEFT: {}"
-# TIMER_GROUP = "timer"
-# TIME_LIMIT = 6
+TIMER_FORMAT = "TIME LEFT: {}"
 
 # DOOR
 DOOR_GROUP = "door"
