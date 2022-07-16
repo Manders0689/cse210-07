@@ -1,7 +1,7 @@
 Item, position_x, position_y, message, has_key, path
 dresser, 50, 110, Someone needs to do their laundry!, False, Escape!/assets/images/dresser.png
-plant, 600, 600, Just a pile of dead leaves here..., False, Escape!/assets/images/plant.png
+plant, 400, 560, Just a pile of dead leaves here..., False, Escape!/assets/images/plant.png
 sofa, 950, 80, You found the key!, True, Escape!/assets/images/sofa.png
 cat, 150, 110, Leave me alone!, False, Escape!/assets/images/cat.png
-dog, 650, 650, Look at those puppy dog eyes!, False, Escape!/assets/images/dog.png
+dog, 650, 520, Look at those puppy dog eyes!, False, Escape!/assets/images/dog.png
 computer, 200, 400, Someone's playing Minecraft!, False, Escape!/assets/images/computer.png
