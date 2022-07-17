@@ -1,7 +1,4 @@
-#based off of brick
-# May need work#
 from game.casting.actor import Actor
-
 
 class Item(Actor):
     """A solid object that can be interacted with."""
@@ -29,7 +26,7 @@ class Item(Actor):
         """
         return self._body
 
-    def get_message(self):
+    def get_text(self):
         """Gets the item's message.
         
         Returns:

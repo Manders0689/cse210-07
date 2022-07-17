@@ -1,4 +1,3 @@
-#Copy from Batter
 from game.scripting.action import Action
 
 

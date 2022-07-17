@@ -1,5 +1,3 @@
-##FINISH## - We'll all clean this up as we go, then look over everything when we meet Wednesday
-
 from game.casting.color import Color
 import time
 
@@ -94,8 +92,10 @@ TIME_LIMIT = 60
 HUD_MARGIN = 15
 LEVEL_GROUP = "level"
 TIMER_GROUP = "timer"
+MESSAGE_GROUP = "messages"
 LEVEL_FORMAT = "LEVEL: {}"
 TIMER_FORMAT = "TIME LEFT: {}"
+MESSAGE_FORMAT = "MESSAGE: {}"
 
 # DOOR
 DOOR_GROUP = "door"

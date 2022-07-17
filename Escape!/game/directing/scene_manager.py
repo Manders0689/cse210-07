@@ -87,6 +87,7 @@ class SceneManager:
         self._add_stats(cast)
         self._add_level(cast)
         self._add_timer(cast)
+        self._add_message(cast)
         self._add_door(cast)
         self._add_items(cast)
         self._add_character(cast)
@@ -206,6 +207,13 @@ class SceneManager:
         position = Point(CENTER_X, HUD_MARGIN)
         label = Label(text, position)
         cast.add_actor(TIMER_GROUP, label)
+
+    def _add_message(self, cast):
+        cast.clear_actors(MESSAGE_GROUP)
+        text = Text(MESSAGE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
+        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
+        label = Label(text, position)
+        cast.add_actor(MESSAGE_GROUP, label)
 
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)

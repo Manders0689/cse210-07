@@ -1,4 +1,3 @@
-#copy from batter
 from constants import * 
 
 

@@ -1,5 +1,3 @@
-##MAY NEED TO GET RID OF RECTANGLE OR PURPLE COLOR##
-
 from constants import *
 from game.scripting.action import Action
 

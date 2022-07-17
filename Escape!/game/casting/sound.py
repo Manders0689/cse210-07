@@ -1,4 +1,3 @@
-#copy from batter
 class Sound:
     """A sound that can be heard.
 

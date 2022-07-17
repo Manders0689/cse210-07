@@ -1,4 +1,3 @@
-#May not need
 import time
 from game.scripting.action import Action
 

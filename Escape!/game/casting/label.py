@@ -1,6 +1,4 @@
-#copy from batter
 from game.casting.actor import Actor
-
 
 class Label(Actor):
     """A label to be displayed."""

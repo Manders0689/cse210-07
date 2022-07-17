@@ -1,4 +1,3 @@
-#copy from batter
 class Image:
     """An image."""
     
