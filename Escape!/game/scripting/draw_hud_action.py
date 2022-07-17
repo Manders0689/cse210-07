@@ -12,18 +12,10 @@ class DrawHudAction(Action):
         item = cast.get_first_actor(ITEM_GROUP)
         self._draw_label(cast, LEVEL_GROUP, LEVEL_FORMAT, stats.get_level())
         self._draw_label(cast, TIMER_GROUP, TIMER_FORMAT, stats.get_timer())
-        self._draw_text(cast, MESSAGE_GROUP, MESSAGE_FORMAT, item.get_text())
 
     def _draw_label(self, cast, group, format_str, data):
         label = cast.get_first_actor(group)
         text = label.get_text()
         text.set_value(format_str.format(data))
-        position = label.get_position()
-        self._video_service.draw_text(text, position)
-
-    ### added because text doesn't have a value to set
-    def _draw_text(self, cast, group, format_str, data):
-        label = cast.get_first_actor(group)
-        text = label.get_text()
         position = label.get_position()
         self._video_service.draw_text(text, position)

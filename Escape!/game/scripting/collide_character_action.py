@@ -1,7 +1,5 @@
 from constants import *
-from game.casting.sound import Sound
 from game.scripting.action import Action
-
 
 class CollideCharacterAction(Action):
 
@@ -17,5 +15,5 @@ class CollideCharacterAction(Action):
         character_body = character.get_body()
 
         if door.get_key() == False & self._physics_service.has_collided(door_body, character_body): 
-            door.get_message()
-            # needs to print to screen
+            #door.get_message()
+            pass

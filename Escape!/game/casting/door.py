@@ -14,17 +14,8 @@ class Door(Actor):
         """
         super().__init__(debug)
         self._body = body
-        self._message = "You need a key to open the door"
         self._key = False
         self._image = image
-        
-    def get_message(self):
-        """Gets the item's message.
-        
-        Returns:
-            Text representing the item's message.
-        """
-        return self._message
 
     def get_body(self):
         """Gets the item's body.

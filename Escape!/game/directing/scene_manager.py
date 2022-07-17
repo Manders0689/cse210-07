@@ -13,7 +13,7 @@ from game.casting.text import Text
 from game.scripting.change_scene_action import ChangeSceneAction
 from game.scripting.check_over_action import CheckOverAction
 from game.scripting.collide_item_action import CollideItemAction
-from game.scripting.collide_character_action import CollideCharacterAction
+#from game.scripting.collide_character_action import CollideCharacterAction
 from game.scripting.control_character_action import ControlCharacterAction
 from game.scripting.draw_items_action import DrawItemsAction
 from game.scripting.draw_dialog_action import DrawDialogAction
@@ -45,8 +45,8 @@ class SceneManager:
     PHYSICS_SERVICE = RaylibPhysicsService()
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
     CHECK_OVER_ACTION = CheckOverAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    #COLLIDE_CHARACTER_ACTION =  CollideCharacterAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_ITEM_ACTION = CollideItemAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    COLLIDE_CHARACTER_ACTION = CollideCharacterAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_CHARACTER_ACTION = ControlCharacterAction(KEYBOARD_SERVICE)
     DRAW_ITEMS_ACTION = DrawItemsAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
@@ -87,7 +87,6 @@ class SceneManager:
         self._add_stats(cast)
         self._add_level(cast)
         self._add_timer(cast)
-        self._add_message(cast)
         self._add_door(cast)
         self._add_items(cast)
         self._add_character(cast)
@@ -130,7 +129,6 @@ class SceneManager:
         script.add_action(INPUT, self.CONTROL_CHARACTER_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
-        # check dialogue?
 
     def _prepare_game_over(self, cast, script):
         self._add_items(cast)
@@ -208,13 +206,6 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(TIMER_GROUP, label)
 
-    def _add_message(self, cast):
-        cast.clear_actors(MESSAGE_GROUP)
-        text = Text(MESSAGE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
-        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
-        label = Label(text, position)
-        cast.add_actor(MESSAGE_GROUP, label)
-
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)
         stats = Stats()
@@ -278,7 +269,7 @@ class SceneManager:
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.RUN_TIMER)
         script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)
+        #script.add_action(UPDATE, self.COLLIDE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.COLLIDE_ITEM_ACTION)
-        script.add_action(UPDATE, self.COLLIDE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.MOVE_CHARACTER_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)

@@ -26,7 +26,7 @@ class Item(Actor):
         """
         return self._body
 
-    def get_text(self):
+    def get_message(self):
         """Gets the item's message.
         
         Returns:
