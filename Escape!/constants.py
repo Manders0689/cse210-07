@@ -105,7 +105,7 @@ DOOR_HEIGHT = 160
 
 # CHARACTER  
 CHARACTER_GROUP = "characters"
-CHARACTER_IMAGES = [f"Escape!/assets/images/{n:01}.png" for n in range(1, 4)]
+CHARACTER_IMAGES = [f"Escape!/assets/images/{n:01}.png" for n in range(1, 3)]
 CHARACTER_WIDTH = 50
 CHARACTER_HEIGHT = 70
 CHARACTER_RATE = 10
