@@ -17,7 +17,10 @@ class CheckOverAction(Action):
         if door.get_key() == True and self._physics_service.has_collided(door_body, character_body): 
             stats = cast.get_first_actor(STATS_GROUP)
             stats.next_level()
-            callback.on_next(NEXT_LEVEL)
+            if (stats.get_level() > 5):
+                callback.on_next(YOU_WIN)
+            else:
+                callback.on_next(NEXT_LEVEL)
 
 
         #### HARDCODED TIMER

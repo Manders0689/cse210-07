@@ -76,6 +76,8 @@ class SceneManager:
             self._prepare_in_play(cast, script)
         elif scene == GAME_OVER:    
             self._prepare_game_over(cast, script)
+        elif scene == YOU_WIN:
+            self._prepare_win(cast, script)
     
     # ----------------------------------------------------------------------------------------------
     # scene methods
@@ -134,6 +136,17 @@ class SceneManager:
         self._add_door(cast)
         self._add_character(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
+
+        script.clear_actions(INPUT)
+        script.add_action(INPUT, TimedChangeSceneAction(NEW_GAME, 5))
+        script.clear_actions(UPDATE)
+        self._add_output_script(script)
+
+    def _prepare_win(self, cast, script):
+        self._add_items(cast)
+        self._add_door(cast)
+        self._add_character(cast)
+        self._add_dialog(cast, WIN)
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(NEW_GAME, 5))
