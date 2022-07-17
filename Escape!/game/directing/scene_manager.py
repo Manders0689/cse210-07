@@ -169,7 +169,7 @@ class SceneManager:
             # skip header line
             next(reader)
             #create dictionary
-            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], bool(n[4]), n[5]] for n in reader}    
+            main_dict = {n[0]: [int(n[1]), int(n[2]), n[3], n[4], n[5]] for n in reader}    
             
         for key, values in main_dict.items():
             #key = item[0]

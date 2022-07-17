@@ -12,7 +12,7 @@ class CollideItemAction(Action):
         self._audio_service = audio_service
         
     def execute(self, cast, script, callback):
-        items = cast.get_actor(ITEM_GROUP)
+        items = cast.get_actors(ITEM_GROUP)
         #message = item.get_message()
         character = cast.get_first_actor(CHARACTER_GROUP)
         character_body = character.get_body()
@@ -25,5 +25,5 @@ class CollideItemAction(Action):
                     # needs to print to screen
                     item.get_message()
                     # to save that we have found the key
-                    if item.get_key() == True:
+                    if item.get_key() == 'True':
                         door.set_key(True)
